@@ -7,8 +7,6 @@ const regButton = document.querySelector('#reg-button');
 const editButton = document.querySelector('#edit-button');
 
 
-
-
 const invalidInput = (input, textMessage) => {
     const parent = input.parentElement;
     parent.classList.add('is-invalid')
@@ -98,18 +96,17 @@ regForm.addEventListener('submit', (e) => {
     if(!errors.includes(false)) {
       createUser();
       clearForm();
-  
     }
   }
   else {
     userRef.firstName = firstName.value
+    userRef.lastName = lastName.value
+    userRef.email = email.value
     regButton.innerText = 'Register'
     userCardsOutput()
     clearForm();
     userRef = null
   }
-
-  
 })
 
 
@@ -129,11 +126,7 @@ let usersArray = [];
           <button type="button" class="btn remove-btn" data-deleteBtn="true" id="remove${user.id}">Remove</button>
         </div>
       </div>`;
-
-      // document.querySelector('#remove'+ user.id).addEventListener('click', )
-      // document.querySelector('#change'+ user.id).addEventListener('click', )
   })
-
 }
 
 const createUser = () => {
@@ -147,30 +140,11 @@ const createUser = () => {
   userCardsOutput();
 }
 
+
 let userRef = null
-
-// function removeUser(user) {
-//   console.log(this)
-//   usersArray = usersArray.filter(_user => _user.id !== user.id)
-//   userCardsOutput();
-//   clearForm();
-// }
-
-// const updateUser = (user) => {
-//   firstName.value = user.firstName;
-//   lastName.value = user.lastName;
-//   email.value = user.email;
-
-//   // regButton.classList.add('d-none')
-//   // editButton.classList.remove('d-none')
-//   regButton.innerText = 'Edit User'
-//   userRef = user
-// }
 
 
 userContainer.addEventListener('click', (e) => {
-
-  console.log(e.target.dataset.editbtn)
 
   const parent = e.target.parentNode.id;
   if(e.target.dataset.deletebtn === 'true') {
@@ -178,8 +152,7 @@ userContainer.addEventListener('click', (e) => {
     usersArray = usersArray.filter(user => user.id !== parent) 
     userCardsOutput();
     clearForm();
-
-
+    regButton.innerText = 'register'
   } 
 
   else if(e.target.dataset.editbtn === 'true') {
@@ -193,60 +166,28 @@ userContainer.addEventListener('click', (e) => {
     lastName.value = userRef.lastName;
     email.value = userRef.email;
 
-  // regButton.classList.add('d-none')
-  // editButton.classList.remove('d-none')
     regButton.innerText = 'Edit User'
-
-
-      //   usersArray.forEach(user => {
-      //     if(user.id === parent) {
-      //       firstName.value = user.firstName;
-      //       lastName.value = user.lastName;
-      //       email.value = user.email;
-      //   }
-      // })
-      
-      // regButton.classList.add('d-none')
-      // editButton.classList.remove('d-none')
-      // let changeButton = document.createElement('button');
-      // changeButton.classList.add('mt-1', 'btn', 'btn-primary');
-      // changeButton.innerText = 'EDIT USER';
-
-      // let regButtons = document.querySelector('.reg-buttons');
-
-      // regButtons.appendChild(changeButton)
-
-      
-      // editButton.addEventListener('click', updateUser(parent))
-      
-      
-      // firstName.parentElement.classList.remove('is-invalid')
-      // lastName.parentElement.classList.remove('is-invalid')
-      // email.parentElement.classList.remove('is-invalid')
       
     }
-
-  
 })
 
-const updateUser = (parent) => {
+
+// const updateUser = (parent) => {
  
 
-  for(const user of usersArray) {
-    if(user.id === parent) {
-      user.firstName = firstName.value
-      user.lastName = lastName.value
-      user.email = email.value
-    }
-  }
+//   for(const user of usersArray) {
+//     if(user.id === parent) {
+//       user.firstName = firstName.value
+//       user.lastName = lastName.value
+//       user.email = email.value
+//     }
+//   }
   
-  userCardsOutput();
+//   userCardsOutput();
   
   
-  regButton.classList.remove('d-none')
-  editButton.classList.add('d-none')
-  // changeButton.remove();
-  clearForm();
-  
-  editButton.removeEventListener('click', updateUser(parent))
-}
+//   regButton.classList.remove('d-none')
+//   editButton.classList.add('d-none')
+
+//   clearForm();
+// }
