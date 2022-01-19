@@ -34,14 +34,13 @@ body {
   outline: none;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 3px 3px 3px rgba(51, 51, 51, 0.300);
 }
 .btn-primary {
   width: 100%;
   font-size: 1.1rem;
   text-transform: uppercase;
   color: rgb(228, 228, 228);
-  background-color: #61696b50;
+  background-color: #61696b;
   border: 1px solid #9ca4a5;
   transition: background 100ms;
   letter-spacing: .1rem;
@@ -49,12 +48,10 @@ body {
 .btn-primary:hover,
 .btn-primary:focus {
   transition: ease-in-out 150ms;
-  background-color: #61696bc7;
-  
+  background-color: #505758;
 }
 .btn-primary:active {
-  background-color: #6f787a17;
-
+  background-color: #393e3f;
 }
 .change-btn {
   border: none;
@@ -90,11 +87,19 @@ body {
   display: block;
   margin-top: 2rem;
   width: 400px;
+  height: 450px;
   background: linear-gradient(90deg, hsla(208, 7%, 55%, 1) 0%, hsla(191, 5%, 40%, 1) 100%);
   padding: 1.5rem;
   border-radius: 20px;
   box-shadow: 5px 5px 5px hsla(0, 0%, 20%, 0.500);
   margin-bottom: 2rem;
+}
+.reg-buttons {
+  width: 100%;
+  position: relative;
+}
+.reg-buttons button {
+  position: absolute;
 }
 
 .input-group {
