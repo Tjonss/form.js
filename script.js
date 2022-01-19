@@ -41,28 +41,28 @@ const validateName = (input) => {
   }
 }
 
-const validateEmail = email => {
+const validateEmail = input => {
   let regExEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
   
   switch(true) {
-    case (email.value.trim() === ''):
-      invalidInput(email, 'Please enter your email address.')
+    case (input.value.trim() === ''):
+      invalidInput(input, 'Please enter your email address.')
       return false;
-    case (!regExEmail.test(email.value) === ''): 
-      invalidInput(email, 'You must enter a valid email address')
+    case (!regExEmail.test(input.value) === ''): 
+      invalidInput(input, 'You must enter a valid email address')
       return false;
-    case (usersArray.some(user => user.email === email.value)): 
-      invalidInput(email, 'This email already exists.')
+    case (usersArray.some(user => user.email === input.value)): 
+      invalidInput(input, 'This email already exists.')
       return false;
     default:
-      validInput(email)
+      validInput(input)
       return true;
   }
 }
 
+
 const clearForm = () => {
 
-  regForm.reset();
   for(let i = 0; i < regForm.length; i++) {
 
     firstName.value = '';
@@ -83,6 +83,8 @@ const validateForm = input => {
   }
 }
 
+
+let userRef = null
 
 regForm.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -112,7 +114,6 @@ regForm.addEventListener('submit', (e) => {
 
 let usersArray = [];
 
-
   const userCardsOutput = () => {
     userContainer.innerHTML = '';
     usersArray.forEach(user => {
@@ -122,8 +123,8 @@ let usersArray = [];
         <div id="${user.id}" class="user-info">
           <p>${user.firstName.toLowerCase()} ${user.lastName.toLowerCase()}</p>
           <p class="p-email">${user.email}</p> 
-          <button type="button" class="btn change-btn" data-editBtn="true" id="change${user.id}">Change</button>
-          <button type="button" class="btn remove-btn" data-deleteBtn="true" id="remove${user.id}">Remove</button>
+          <button class="btn change-btn" data-editBtn="true" id="change${user.id}">Edit User</button>
+          <button class="btn remove-btn" data-deleteBtn="true" id="remove${user.id}">Remove</button>
         </div>
       </div>`;
   })
@@ -141,8 +142,6 @@ const createUser = () => {
 }
 
 
-let userRef = null
-
 
 userContainer.addEventListener('click', (e) => {
 
@@ -157,37 +156,32 @@ userContainer.addEventListener('click', (e) => {
 
   else if(e.target.dataset.editbtn === 'true') {
 
+    regButton.innerText = 'Edit User'
     firstName.parentElement.classList.remove('is-invalid')
     lastName.parentElement.classList.remove('is-invalid')
     email.parentElement.classList.remove('is-invalid')
 
     userRef = usersArray.find(user => user.id === parent)
+
     firstName.value = userRef.firstName;
     lastName.value = userRef.lastName;
     email.value = userRef.email;
 
-    regButton.innerText = 'Edit User'
-      
+   
+    
     }
 })
 
 
-// const updateUser = (parent) => {
- 
 
-//   for(const user of usersArray) {
-//     if(user.id === parent) {
-//       user.firstName = firstName.value
-//       user.lastName = lastName.value
-//       user.email = email.value
-//     }
+// ÄNDRA VALIDERINGEN PÅ EDIT USER!!!!
+
+
+// const updateUser = () => {
+//   for(let i = 0; i < regForm.length; i++) {
+//     errors[i] = validateForm(regForm[i])
 //   }
-  
-//   userCardsOutput();
-  
-  
-//   regButton.classList.remove('d-none')
-//   editButton.classList.add('d-none')
-
-//   clearForm();
+//   if(!errors.includes(false)) {
+//     userCardsOutput();
+//   }
 // }

@@ -34,24 +34,27 @@ body {
   outline: none;
   font-weight: 600;
   cursor: pointer;
+  box-shadow: 3px 3px 3px #51575898;
+  letter-spacing: 1px;
 }
 .btn-primary {
   width: 100%;
   font-size: 1.1rem;
   text-transform: uppercase;
   color: rgb(228, 228, 228);
-  background-color: #61696b;
+  background-color: #61696b7a;
   border: 1px solid #9ca4a5;
   transition: background 100ms;
   letter-spacing: .1rem;
+  box-shadow: 3px 3px 3px #515758;
 }
 .btn-primary:hover,
 .btn-primary:focus {
   transition: ease-in-out 150ms;
-  background-color: #505758;
+  background-color: #61696bcb;
 }
 .btn-primary:active {
-  background-color: #393e3f;
+  background-color: #61696b;
 }
 .change-btn {
   border: none;
@@ -71,7 +74,7 @@ body {
   color: #fff;
 }
 .remove-btn:hover {
-  background-color: rgb(78, 0, 0);
+  background-color: rgb(100, 2, 2);
   transition: ease-in-out 150ms;
 }
 /* BUTTONS END */
@@ -94,20 +97,10 @@ body {
   box-shadow: 5px 5px 5px hsla(0, 0%, 20%, 0.500);
   margin-bottom: 2rem;
 }
-.reg-buttons {
-  width: 100%;
-  position: relative;
-}
-.reg-buttons button {
-  position: absolute;
-}
-
 .input-group {
-  /* SÄTT EN WIDTH PÅ 100% */
   margin-bottom: .3rem;
   position: relative;
 }
-
 .input-group .input-label {
   display: block;
   font-size: 1.245rem;
@@ -129,7 +122,6 @@ body {
 .input-group .form-control:focus {
   border: 1px solid rgb(61, 58, 58);
 }
-
  .input-group .invalid-feedback {
   color: var(--clr-invalid);
   font-size: .7rem;
