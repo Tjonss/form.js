@@ -170,21 +170,3 @@ userContainer.addEventListener('click', (e) => {
     
     }
 })
-
-
-
-
-
-
-
-// ÄNDRA VALIDERINGEN PÅ EDIT USER!!!!
-
-
-// const updateUser = () => {
-//   for(let i = 0; i < regForm.length; i++) {
-//     errors[i] = validateForm(regForm[i])
-//   }
-//   if(!errors.includes(false)) {
-//     userCardsOutput();
-//   }
-// }
