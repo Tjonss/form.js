@@ -42,6 +42,7 @@ const validateName = (input) => {
 }
 
 const validateEmail = input => {
+
   let regExEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
   
   switch(true) {
@@ -59,7 +60,6 @@ const validateEmail = input => {
       return true;
   }
 }
-
 
 const clearForm = () => {
 
@@ -83,34 +83,16 @@ const validateForm = input => {
   }
 }
 
-
-let userRef = null
-
-regForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-
-  if(!userRef) {
-    errors = [];
-  
-    for(let i = 0; i < regForm.length; i++) {
-      errors[i] = validateForm(regForm[i])
-    }
-    if(!errors.includes(false)) {
-      createUser();
-      clearForm();
-    }
+const createUser = () => {
+  const user = {
+    id: Date.now().toString(),
+    firstName: firstName.value,
+    lastName: lastName.value,
+    email: email.value
   }
-  else {
-    userRef.firstName = firstName.value
-    userRef.lastName = lastName.value
-    userRef.email = email.value
-    regButton.innerText = 'Register'
-    userCardsOutput()
-    clearForm();
-    userRef = null
-  }
-})
-
+  usersArray.push(user)
+  userCardsOutput();
+}
 
 let usersArray = [];
 
@@ -127,20 +109,39 @@ let usersArray = [];
           <button class="btn remove-btn" data-deleteBtn="true" id="remove${user.id}">Remove</button>
         </div>
       </div>`;
+      
+      
   })
 }
 
-const createUser = () => {
-  const user = {
-    id: Date.now().toString(),
-    firstName: firstName.value,
-    lastName: lastName.value,
-    email: email.value
-  }
-  usersArray.push(user)
-  userCardsOutput();
-}
+let userRef = null
 
+regForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  if(!userRef) {
+
+    errors = [];
+  
+    for(let i = 0; i < regForm.length; i++) {
+      errors[i] = validateForm(regForm[i])
+    }
+    if(!errors.includes(false)) {
+      createUser();
+      clearForm();
+    }
+  }
+
+  else {
+    userRef.firstName = firstName.value
+    userRef.lastName = lastName.value
+    userRef.email = email.value
+    regButton.innerText = 'Register'
+    userCardsOutput();
+    clearForm();
+    userRef = null
+  }
+})
 
 
 userContainer.addEventListener('click', (e) => {
@@ -166,11 +167,13 @@ userContainer.addEventListener('click', (e) => {
     firstName.value = userRef.firstName;
     lastName.value = userRef.lastName;
     email.value = userRef.email;
-
-   
     
     }
 })
+
+
+
+
 
 
 
