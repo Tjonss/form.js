@@ -4,7 +4,6 @@ const lastName = document.querySelector('#lastName');
 const email = document.querySelector('#email');
 const userContainer = document.querySelector('#user-container');
 const regButton = document.querySelector('#reg-button');
-const editButton = document.querySelector('#edit-button');
 
 
 const invalidInput = (input, textMessage) => {
@@ -61,6 +60,15 @@ const validateEmail = input => {
   }
 }
 
+const validateForm = input => {
+  switch(input.type) {
+    case 'text': return validateName(input)
+    case 'email': return validateEmail(input)
+    default:
+      break;
+  }
+}
+
 const clearForm = () => {
 
   for(let i = 0; i < regForm.length; i++) {
@@ -74,14 +82,7 @@ const clearForm = () => {
   }
 }
 
-const validateForm = input => {
-  switch(input.type) {
-    case 'text': return validateName(input)
-    case 'email': return validateEmail(input)
-    default:
-      break;
-  }
-}
+
 
 const createUser = () => {
   const user = {
@@ -99,18 +100,15 @@ let usersArray = [];
   const userCardsOutput = () => {
     userContainer.innerHTML = '';
     usersArray.forEach(user => {
-
       userContainer.innerHTML += `
       <div class="user-card">
         <div id="${user.id}" class="user-info">
           <p>${user.firstName.toLowerCase()} ${user.lastName.toLowerCase()}</p>
           <p class="p-email">${user.email}</p> 
-          <button class="btn change-btn" data-editBtn="true" id="change${user.id}">Edit User</button>
-          <button class="btn remove-btn" data-deleteBtn="true" id="remove${user.id}">Remove</button>
+          <button class="btn change-btn" data-editbtn="true">Edit User</button>
+          <button class="btn remove-btn" data-deletebtn="true">Remove</button>
         </div>
       </div>`;
-      
-      
   })
 }
 
@@ -120,7 +118,6 @@ regForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
   if(!userRef) {
-
     errors = [];
   
     for(let i = 0; i < regForm.length; i++) {
@@ -131,7 +128,6 @@ regForm.addEventListener('submit', (e) => {
       clearForm();
     }
   }
-
   else {
     userRef.firstName = firstName.value
     userRef.lastName = lastName.value
@@ -153,20 +149,18 @@ userContainer.addEventListener('click', (e) => {
     userCardsOutput();
     clearForm();
     regButton.innerText = 'register'
+    userRef = null
   } 
 
   else if(e.target.dataset.editbtn === 'true') {
-
     regButton.innerText = 'Edit User'
     firstName.parentElement.classList.remove('is-invalid')
     lastName.parentElement.classList.remove('is-invalid')
     email.parentElement.classList.remove('is-invalid')
 
     userRef = usersArray.find(user => user.id === parent)
-
     firstName.value = userRef.firstName;
     lastName.value = userRef.lastName;
     email.value = userRef.email;
-    
-    }
+  }
 })

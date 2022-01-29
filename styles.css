@@ -173,7 +173,6 @@ body {
   gap: .7rem;
   border-radius: 15px;
   padding-bottom: 3rem;
-  /* visibility: hidden; */
 } 
  .user-card {
   background: linear-gradient(to bottom, hsla(208, 7%, 55%, 1) 0%, hsla(191, 5%, 40%, 1) 100%);
